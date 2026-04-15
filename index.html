@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toads Don't Suck — Protect Conway's Arkansas River</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+  /* =====================
+     COLOR PALETTE
+  ===================== */
+  :root {
+    --bg-darkest:  #0A160A;
+    --bg-dark:     #0F1F0F;
+    --bg-mid:      #162916;
+    --bg-section:  #1A3320;
+    --border:      #2E5922;
+    --green-bright:#5DBF3A;
+    --green-mid:   #4A8C35;
+    --red:         #A51C30;
+    --red-dark:    #7A0E1E;
+    --text-white:  #FFFFFF;
+    --text-light:  #E8F5DC;
+    --text-mid:    #C8E0B0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    font-family: 'Source Serif 4', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* grain overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.3;
+  }
+
+  /* =====================
+     NAV
+  ===================== */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 900;
+    background: rgba(10,22,10,0.97);
+    border-bottom: 2px solid var(--border);
+    padding: 12px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem; color: var(--green-bright);
+    letter-spacing: 3px; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: #ffffff;
+    text-decoration: none; font-size: 0.82rem;
+    letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green-bright); }
+  .nav-cta {
+    background: var(--red) !important;
+    color: #fff !important; padding: 7px 20px;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 1rem !important; letter-spacing: 2px !important;
+  }
+  .nav-cta:hover { background: var(--green-bright) !important; color: var(--bg-darkest) !important; }
+
+  /* =====================
+     HERO
+  ===================== */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 130px 72px 90px;
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(ellipse at 75% 40%, rgba(26,51,32,0.65) 0%, transparent 55%),
+      var(--bg-dark);
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--border), var(--green-bright), var(--border), transparent);
+  }
+  .hero-eyebrow {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--green-bright); font-size: 1.05rem;
+    margin-bottom: 20px; transform: rotate(-1.2deg); display: inline-block;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 9.5vw, 9.5rem);
+    line-height: 1; letter-spacing: 2px;
+    white-space: nowrap; position: relative; z-index: 2;
+    display: flex; align-items: baseline; gap: 0.15em;
+  }
+  .word-toads { color: var(--green-bright); }
+  .word-dont  { color: var(--red); }
+  .word-suck  { color: var(--green-bright); }
+  .hero-sub {
+    font-size: 1.15rem; color: #ffffff;
+    max-width: 580px; margin-top: 28px; line-height: 1.8;
+    font-style: italic; position: relative; z-index: 2;
+  }
+  .hero-sub strong { color: #ffffff; font-style: normal; }
+  .hero-sub em { color: var(--green-bright); font-style: normal; font-weight: 600; }
+  .hero-buttons { display: flex; gap: 16px; margin-top: 40px; position: relative; z-index: 2; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red); color: #fff;
+    padding: 16px 38px; font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem; letter-spacing: 3px; text-decoration: none;
+    border: none; cursor: pointer; transition: all 0.2s;
+    display: inline-block; position: relative; top: 0;
+    box-shadow: 4px 4px 0px var(--red-dark);
+  }
+  .btn-primary:hover { background: var(--green-bright); color: var(--bg-darkest); top: 2px; box-shadow: 2px 2px 0px var(--border); }
+  .btn-secondary {
+    background: transparent; color: #fff;
+    padding: 14px 36px; font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem; letter-spacing: 3px; text-decoration: none;
+    border: 2px solid var(--green-mid); cursor: pointer; transition: all 0.2s; display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--green-bright); color: var(--green-bright); }
+  .hero-toad {
+    position: absolute; right: 4%; bottom: -2%;
+    font-size: 30vw; opacity: 0.05; line-height: 1; pointer-events: none;
+  }
+
+  /* =====================
+     TICKER
+  ===================== */
+  .ticker {
+    background: var(--red); padding: 10px 0; overflow: hidden;
+    white-space: nowrap; border-top: 1px solid var(--red-dark); border-bottom: 1px solid var(--red-dark);
+  }
+  .ticker-inner {
+    display: inline-block; animation: ticker 30s linear infinite;
+    font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem;
+    letter-spacing: 4px; color: #fff;
+  }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* =====================
+     SECTION SHARED
+  ===================== */
+  section { padding: 100px 72px; position: relative; }
+  .section-label {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--green-bright); font-size: 0.9rem;
+    margin-bottom: 10px; transform: rotate(-0.5deg); display: inline-block;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1; letter-spacing: 1px;
+    margin-bottom: 40px; color: #fff;
+  }
+
+  /* =====================
+     THE ISSUE
+  ===================== */
+  .issue {
+    background: var(--bg-section);
+    border-top: 3px solid var(--border);
+    border-bottom: 3px solid var(--border);
+  }
+  .issue-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: start; margin-top: 20px;
+  }
+  .issue-text p {
+    font-size: 1.05rem; line-height: 1.9;
+    color: #ffffff; margin-bottom: 22px;
+  }
+  .issue-text p strong { color: #ffffff; }
+  .issue-text p em { color: var(--green-bright); font-style: normal; font-weight: 600; }
+
+  .stat-block {
+    background: var(--bg-darkest);
+    border-left: 4px solid var(--green-bright);
+    padding: 28px 30px; margin-bottom: 20px;
+  }
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem; color: var(--green-bright); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.85rem; color: #ffffff;
+    text-transform: uppercase; letter-spacing: 2px; margin-top: 6px;
+  }
+
+  /* =====================
+     VIDEO
+  ===================== */
+  .video-section {
+    background: #070F07; text-align: center;
+    border-top: 3px solid var(--red);
+  }
+  .video-placeholder {
+    max-width: 760px; margin: 0 auto;
+    background: var(--bg-mid);
+    border: 2px solid var(--border); padding: 80px 40px;
+  }
+  .video-placeholder::before {
+    content: '🐸'; font-size: 4.5rem; display: block; margin-bottom: 20px;
+  }
+  .video-placeholder p {
+    color: #ffffff; font-style: italic;
+    font-size: 1rem; line-height: 1.7; max-width: 500px; margin: 0 auto;
+  }
+  .video-caption {
+    font-family: 'Permanent Marker', cursive;
+    color: var(--green-bright); font-size: 1.1rem;
+    margin-top: 20px; transform: rotate(-1deg); display: inline-block;
+  }
+
+  /* =====================
+     EVIDENCE
+  ===================== */
+  .evidence { background: var(--bg-dark); }
+  .evidence-intro {
+    color: #ffffff; max-width: 640px;
+    font-style: italic; margin-bottom: 32px; font-size: 1.05rem; line-height: 1.7;
+  }
+  .evidence-cards {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 24px; margin-top: 20px;
+  }
+  .evidence-card {
+    background: var(--bg-section);
+    border: 1px solid var(--border); padding: 32px;
+    position: relative; transition: transform 0.2s, border-color 0.2s;
+  }
+  .evidence-card:hover { transform: translateY(-4px); border-color: var(--green-bright); }
+  .evidence-card::before {
+    content: attr(data-num); font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem; color: var(--border); opacity: 0.4;
+    position: absolute; top: 10px; right: 18px; line-height: 1;
+  }
+  .evidence-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+    color: var(--green-bright); letter-spacing: 1px; margin-bottom: 12px;
+  }
+  .evidence-card p { color: #ffffff; font-size: 0.98rem; line-height: 1.75; }
+  .tag {
+    display: inline-block; background: var(--red); color: #fff;
+    font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem;
+    letter-spacing: 2px; padding: 3px 10px; margin-bottom: 14px;
+  }
+
+  /* =====================
+     ACTION
+  ===================== */
+  .action {
+    background: var(--red); text-align: center;
+    border-top: 3px solid var(--red-dark);
+  }
+  .action .section-title { color: #fff; }
+  .action-intro { color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto; font-style: italic; font-size: 1.05rem; }
+  .action-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 24px; margin-top: 48px; text-align: left;
+  }
+  .action-card {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 32px; transition: background 0.2s;
+  }
+  .action-card:hover { background: rgba(0,0,0,0.45); }
+  .action-step {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem; color: var(--green-bright); line-height: 1; margin-bottom: 12px;
+  }
+  .action-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+    color: #fff; letter-spacing: 1px; margin-bottom: 10px;
+  }
+  .action-card p { color: rgba(255,255,255,0.9); font-size: 0.95rem; line-height: 1.75; margin-bottom: 20px; }
+  .action-card a { color: var(--green-bright); text-decoration: underline; font-size: 0.9rem; }
+
+  /* =====================
+     PETITION SECTION
+  ===================== */
+  .petition-section {
+    background: var(--bg-mid);
+    border-top: 3px solid var(--green-bright);
+  }
+  .petition-grid {
+    display: grid; grid-template-columns: 1fr 440px;
+    gap: 60px; align-items: start;
+  }
+  .petition-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #ffffff; margin-bottom: 18px;
+  }
+  .petition-text p strong { color: #fff; }
+  .transparency-badge {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: rgba(93,191,58,0.08);
+    border: 1px solid var(--green-bright);
+    border-left: 4px solid var(--green-bright);
+    padding: 16px 20px; margin-bottom: 28px;
+  }
+  .transparency-badge p { font-size: 0.85rem; color: #ffffff; line-height: 1.6; }
+  .transparency-badge p strong { color: var(--green-bright); }
+
+  /* NETLIFY FORM */
+  .form-card {
+    background: var(--bg-section);
+    border: 2px solid var(--border); padding: 40px 36px;
+    position: sticky; top: 90px;
+  }
+  .form-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+    color: var(--green-bright); letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .form-card .form-sub {
+    font-size: 0.9rem; color: #ffffff;
+    font-style: italic; margin-bottom: 28px; line-height: 1.5;
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block; font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem; letter-spacing: 2px;
+    color: #ffffff; margin-bottom: 6px; text-transform: uppercase;
+  }
+  .req { color: var(--red); }
+  .form-group input,
+  .form-group textarea {
+    width: 100%; background: var(--bg-darkest);
+    border: 1px solid var(--border); color: #fff;
+    padding: 12px 14px; font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--green-bright); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
+  .checkbox-group input[type="checkbox"] {
+    width: 18px; height: 18px; min-width: 18px;
+    margin-top: 2px; cursor: pointer; accent-color: var(--green-bright);
+  }
+  .checkbox-group label { font-size: 0.85rem; color: #ffffff; line-height: 1.5; cursor: pointer; }
+  .btn-sign {
+    width: 100%; background: var(--red); color: #fff; border: none;
+    padding: 18px; font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 3px; cursor: pointer;
+    transition: all 0.2s; position: relative; top: 0;
+    box-shadow: 4px 4px 0px var(--red-dark); margin-top: 8px;
+  }
+  .btn-sign:hover { background: var(--green-bright); color: var(--bg-darkest); top: 2px; box-shadow: 2px 2px 0px var(--border); }
+  .privacy-note { font-size: 0.75rem; color: #cccccc; margin-top: 14px; line-height: 1.5; text-align: center; font-style: italic; }
+
+  /* SUCCESS */
+  .success-msg {
+    display: none; text-align: center; padding: 20px 0;
+  }
+  .success-msg .check { font-size: 4rem; display: block; margin-bottom: 16px; }
+  .success-msg h4 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
+    color: var(--green-bright); letter-spacing: 1px; margin-bottom: 10px;
+  }
+  .success-msg p { color: #ffffff; font-size: 0.95rem; line-height: 1.6; }
+  .share-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+  .share-btn {
+    background: var(--border); color: #fff; border: none;
+    padding: 10px 20px; font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem; letter-spacing: 2px; cursor: pointer;
+    text-decoration: none; transition: background 0.2s; display: inline-block;
+  }
+  .share-btn:hover { background: var(--green-bright); color: var(--bg-darkest); }
+  .share-btn.fb { background: #1877F2; }
+  .share-btn.fb:hover { background: #0d65d9; color: #fff; }
+
+  /* =====================
+     DONATE
+  ===================== */
+  .donate {
+    background: var(--bg-section); text-align: center;
+    border-top: 3px solid var(--green-bright);
+  }
+  .donate-box {
+    max-width: 600px; margin: 0 auto;
+    background: var(--bg-darkest); border: 2px solid var(--green-bright); padding: 60px 40px;
+  }
+  .donate-box p { color: #ffffff; font-size: 1.05rem; line-height: 1.8; margin-bottom: 32px; font-style: italic; }
+  .donate-amounts { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .amount-btn {
+    background: transparent; border: 2px solid var(--green-mid);
+    color: #fff; font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem; letter-spacing: 2px; padding: 10px 24px; cursor: pointer; transition: all 0.2s;
+  }
+  .amount-btn:hover, .amount-btn.active { background: var(--green-bright); border-color: var(--green-bright); color: var(--bg-darkest); }
+  .donate-note { margin-top: 20px; font-size: 0.8rem; color: var(--green-mid); }
+
+  /* =====================
+     ABOUT
+  ===================== */
+  .about { background: var(--bg-dark); border-top: 3px solid var(--border); }
+  .about-inner { max-width: 760px; }
+  .about-inner p { font-size: 1.05rem; line-height: 1.85; color: #ffffff; margin-bottom: 20px; }
+  .about-inner p strong { color: var(--green-bright); }
+  .about-inner a { color: var(--green-bright); }
+  .about-inner blockquote {
+    border-left: 4px solid var(--green-bright);
+    padding: 20px 30px; margin: 32px 0; background: var(--bg-section);
+  }
+  .about-inner blockquote p { font-style: italic; font-size: 1.2rem; color: #fff; margin: 0; }
+
+  /* =====================
+     FOOTER
+  ===================== */
+  footer {
+    background: var(--bg-darkest); padding: 60px 72px 40px;
+    border-top: 3px solid var(--red);
+  }
+  .footer-top {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 48px; flex-wrap: wrap; gap: 40px;
+  }
+  .footer-brand .logo {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+    color: var(--green-bright); letter-spacing: 3px; display: block; margin-bottom: 8px;
+  }
+  .footer-brand p { color: #ffffff; font-style: italic; font-size: 0.9rem; max-width: 280px; line-height: 1.6; }
+  .footer-social { display: flex; flex-direction: column; gap: 12px; }
+  .footer-social h4 { font-family: 'Bebas Neue', sans-serif; color: #ffffff; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 4px; }
+  .social-links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .social-link {
+    background: var(--bg-section); border: 1px solid var(--border);
+    color: #ffffff; padding: 8px 18px;
+    font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;
+    font-size: 0.85rem; text-decoration: none; transition: all 0.2s;
+  }
+  .social-link:hover { background: var(--green-bright); color: var(--bg-darkest); border-color: var(--green-bright); }
+  .footer-contact h4 { font-family: 'Bebas Neue', sans-serif; color: #ffffff; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 12px; }
+  .footer-contact a { color: var(--green-bright); text-decoration: none; font-size: 0.95rem; display: block; margin-bottom: 6px; }
+  .footer-bottom {
+    border-top: 1px solid var(--bg-section); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { color: var(--border); font-size: 0.8rem; }
+  .handwritten { font-family: 'Permanent Marker', cursive; color: var(--green-bright); font-size: 0.9rem; transform: rotate(-1deg); display: inline-block; }
+
+  /* =====================
+     FADE IN
+  ===================== */
+  .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* =====================
+     RESPONSIVE
+  ===================== */
+  @media (max-width: 960px) {
+    nav { padding: 12px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 28px; }
+    .hero { padding: 100px 28px 60px; }
+    .hero-title { font-size: clamp(2rem, 10vw, 4.5rem); white-space: normal; flex-wrap: wrap; }
+    .issue-grid, .evidence-cards, .action-grid, .petition-grid { grid-template-columns: 1fr; }
+    .form-card { position: static; }
+    footer { padding: 50px 28px 30px; }
+    .footer-top { flex-direction: column; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Toads Don't Suck</a>
+  <ul class="nav-links">
+    <li><a href="#issue">The Issue</a></li>
+    <li><a href="#evidence">The Evidence</a></li>
+    <li><a href="#action">Take Action</a></li>
+    <li><a href="#petition">Sign the Petition</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#donate" class="nav-cta">Donate</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">AI Data Centers Are Something to Croak About.</span>
+  <h1 class="hero-title">
+    <span class="word-toads">TOADS</span><span class="word-dont">&nbsp;DON'T&nbsp;</span><span class="word-suck">SUCK.</span>
+  </h1>
+  <p class="hero-sub">
+    Our city quietly rezoned <strong>455 acres of Arkansas River bottomland</strong> to heavy industrial —
+    under an <em>NDA</em> — for a massive data center. No public vote. No community input.
+    No transparency. The toads didn't get a say. Neither did you.
+  </p>
+  <div class="hero-buttons">
+    <a href="#petition" class="btn-primary">Hop Into Action</a>
+    <a href="#issue" class="btn-secondary">Learn What's Happening</a>
+  </div>
+  <div class="hero-toad">🐸</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-inner">
+    455 ACRES REZONED IN SECRET &nbsp;•&nbsp; NDA SIGNED BY CITY OFFICIALS &nbsp;•&nbsp; ARKANSAS RIVER AT RISK &nbsp;•&nbsp; NO PUBLIC VOTE &nbsp;•&nbsp; TOADS DON'T SUCK &nbsp;•&nbsp; CONWAY DESERVES ANSWERS &nbsp;•&nbsp; THE NATURAL STATE NEEDS YOUR VOICE &nbsp;•&nbsp; 455 ACRES REZONED IN SECRET &nbsp;•&nbsp; NDA SIGNED BY CITY OFFICIALS &nbsp;•&nbsp; ARKANSAS RIVER AT RISK &nbsp;•&nbsp; NO PUBLIC VOTE &nbsp;•&nbsp; TOADS DON'T SUCK &nbsp;•&nbsp; CONWAY DESERVES ANSWERS &nbsp;•&nbsp; THE NATURAL STATE NEEDS YOUR VOICE &nbsp;•&nbsp;
+  </span>
+</div>
+
+<!-- THE ISSUE -->
+<section class="issue" id="issue">
+  <span class="section-label">// What's happening</span>
+  <h2 class="section-title">The Issue</h2>
+  <div class="issue-grid">
+    <div class="issue-text fade-in">
+      <p>Conway, Arkansas is home to one of the most beloved regional festivals in the South — <strong>Toad Suck Daze</strong>, a celebration rooted in the history and character of our Arkansas River community. The Toad Suck Lock and Dam isn't just a landmark. It's our identity.</p>
+      <p>In April 2025, the City of Conway quietly rezoned <em>455 acres</em> of land along the Lollie Road corridor — riverfront land, near that very dam — to <strong>I-3 Heavy Industrial</strong> classification. The rezoning was approved by the Planning Commission with minimal public attention.</p>
+      <p>What we now believe: this rezoning was done in advance of a deal — signed under a <strong>nondisclosure agreement</strong> — to build a massive data center on the banks of the Arkansas River.</p>
+      <p><strong>Data centers are not benign neighbors.</strong> They consume millions of gallons of water daily for cooling. They generate significant heat and require enormous electrical infrastructure. Sited next to a river, these impacts become direct threats to the ecosystem, water quality, and the community that depends on both.</p>
+      <p>This concern is not abstract. <strong>Conway Corporation issued a voluntary water restriction notice this week</strong> due to below-average rainfall across the region. While that restriction is unrelated to the proposed data center, it raises a question Conway residents deserve an honest answer to: <em>if our water supply is already under strain from natural conditions, what happens to availability and cost when a facility consuming millions of gallons daily comes online next to our river?</em> This is a speculative concern — but it is a reasonable one, and it deserves a public answer before any ground is broken.</p>
+      <p>Conway residents were given no voice. No vote. No notice. That ends now.</p>
+    </div>
+    <div class="fade-in">
+      <div class="stat-block">
+        <div class="stat-number">455</div>
+        <div class="stat-label">Acres quietly rezoned to Heavy Industrial — April 2025</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">$0</div>
+        <div class="stat-label">Public input collected before the rezoning was approved</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">1</div>
+        <div class="stat-label">NDA signed by city officials blocking public disclosure</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Business days the city has to respond to our FOIA request</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" id="video">
+  <span class="section-label">// Their side of the story</span>
+  <h2 class="section-title">Nobody Asked the Toads</h2>
+  <div class="video-placeholder fade-in">
+    <p>Every year, Conway celebrates the toad. Children race them. Families gather for them. The river that sustains them is the soul of our city's oldest story.<br><br><em>Nobody asked what the toads thought about 455 acres of their home being handed over to a data center under a secret agreement.</em></p>
+    <div class="video-caption">Video coming soon. 🐸</div>
+  </div>
+  <p style="color:var(--green-mid);font-size:0.85rem;margin-top:24px;font-style:italic;">Community-produced video in production. Want to help? <a href="/cdn-cgi/l/email-protection#f38381968080b3879c929780979c9d8780869098dd9c8194" style="color:var(--green-bright);">Get in touch.</a></p>
+</section>
+
+<!-- EVIDENCE -->
+<section class="evidence" id="evidence">
+  <span class="section-label">// The paper trail</span>
+  <h2 class="section-title">The Evidence</h2>
+  <p class="evidence-intro">This isn't speculation. It's public record — buried in a city report most people never read.</p>
+  <div class="evidence-cards">
+    <div class="evidence-card fade-in" data-num="01">
+      <span class="tag">Planning Commission</span>
+      <h3>The Rezoning</h3>
+      <p>In April 2025, the Conway Planning Commission approved the rezoning of approximately 455 acres along the Lollie Road corridor to I-3 Heavy Industrial zoning — the most intensive industrial classification available. This is documented in the City of Conway's own 2025 State of the City report.</p>
+    </div>
+    <div class="evidence-card fade-in" data-num="02">
+      <span class="tag">NDA / Secrecy</span>
+      <h3>The Secret Deal</h3>
+      <p>A development agreement — believed to involve a major data center operator — was signed by city officials under a nondisclosure agreement. Conway residents were not informed. Arkansas FOIA law places strict limits on the use of NDAs to conceal information affecting public health and land use.</p>
+    </div>
+    <div class="evidence-card fade-in" data-num="03">
+      <span class="tag">FOIA Filed</span>
+      <h3>We Asked. Officially.</h3>
+      <p>A formal Freedom of Information Act request has been submitted to the City of Conway demanding all records related to the development agreement, the NDA, the rezoning communications, and any environmental review documents. The city has 3 business days to respond under Arkansas law.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACTION -->
+<section class="action" id="action">
+  <span class="section-label" style="color:var(--green-bright);">// What you can do right now</span>
+  <h2 class="section-title">Take Action</h2>
+  <p class="action-intro">This fight is won or lost by how many Conway residents show up. Here's how to show up.</p>
+  <div class="action-grid">
+    <div class="action-card fade-in">
+      <div class="action-step">01</div>
+      <h3>Sign the Petition</h3>
+      <p>Add your name demanding the city hold a public hearing before any data center construction begins on the Arkansas River corridor.</p>
+      <a href="#petition">Sign the petition below →</a>
+    </div>
+    <div class="action-card fade-in">
+      <div class="action-step">02</div>
+      <h3>Contact City Council</h3>
+      <p>Your aldermen work for you. Call or email them and demand transparency about what was signed, who signed it, and what it means for Conway's river.</p>
+      <a href="https://www.conwayarkansas.gov" target="_blank">Find your alderman →</a>
+    </div>
+    <div class="action-card fade-in">
+      <div class="action-step">03</div>
+      <h3>Show Up</h3>
+      <p>Conway City Council meets regularly at City Hall, 1111 Main Street. Showing up in person — with your neighbors — is the most powerful thing a citizen can do.</p>
+      <a href="https://www.conwayarkansas.gov" target="_blank">City Hall info →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PETITION — powered by Netlify Forms -->
+<section class="petition-section" id="petition">
+  <span class="section-label">// Add your name</span>
+  <h2 class="section-title">Sign the Petition</h2>
+  <div class="petition-grid">
+
+    <div class="petition-text fade-in">
+      <div class="transparency-badge">
+        <span style="font-size:1.4rem;flex-shrink:0;">🐸</span>
+        <p><strong>Transparency Notice:</strong> Every signature here is a real person who signed voluntarily. The count starts at zero and grows only with genuine submissions. No names are fabricated or padded. This petition's credibility depends entirely on its honesty.</p>
+      </div>
+      <p>We call on Mayor Castleberry and the Conway City Council to <strong>immediately halt any further action</strong> on the proposed data center development along the Lollie Road corridor until a full public hearing is held, all NDA-protected documents are disclosed under FOIA, an independent environmental impact assessment is completed, and the community of Conway is given a meaningful vote.</p>
+      <p>The Arkansas River is not a resource to be quietly handed over. It belongs to all of us — the toads, the families, the fishermen, the festival-goers, and the generations of Conway residents yet to come.</p>
+      <p style="color:var(--green-bright);font-family:'Permanent Marker',cursive;transform:rotate(-0.8deg);display:inline-block;">Share this with every Conway resident you know. 🐸</p>
+    </div>
+
+    <div class="form-card fade-in">
+      <h3>Add Your Name</h3>
+      <p class="form-sub">Your signature tells Conway's leaders that this community is watching.</p>
+
+      <!-- NETLIFY FORM — submissions go to your Netlify dashboard automatically -->
+      <form
+        name="petition"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onsubmit="handleSubmit(event)"
+      >
+        <input type="hidden" name="form-name" value="petition">
+        <div style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></div>
+
+        <div class="form-group">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="first-name" placeholder="First name" maxlength="50" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" name="last-name" placeholder="Last name" maxlength="50" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>City / Town</label>
+          <input type="text" name="city" placeholder="Conway, AR" maxlength="60">
+        </div>
+        <div class="form-group">
+          <label>Comment <span style="color:var(--text-mid);font-size:0.75rem;text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <textarea name="comment" placeholder="Why does this matter to you?" maxlength="200"></textarea>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="displayName" name="display-name" value="yes" checked>
+          <label for="displayName">Display my name publicly on this petition</label>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="updates" name="email-updates" value="yes">
+          <label for="updates">Keep me updated on campaign news via email</label>
+        </div>
+        <button type="submit" class="btn-sign">Sign the Petition</button>
+        <p class="privacy-note">Your email is never sold or shared. Used only for campaign updates if you opt in.</p>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <span class="check">🐸</span>
+        <h4>You're on the record!</h4>
+        <p>Thank you for standing up for Conway's river. Now help spread the word.</p>
+        <div class="share-row">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://toadsdontsuck.org" target="_blank" class="share-btn fb">Share on Facebook</a>
+          <a href="https://twitter.com/intent/tweet?text=I+just+signed+the+petition+to+protect+Conway%27s+Arkansas+River!+Toads+Don%27t+Suck!&url=https://toadsdontsuck.org" target="_blank" class="share-btn">Share on X</a>
+          <button class="share-btn" onclick="copyLink()">Copy Link</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <span class="section-label">// Keep this going</span>
+  <h2 class="section-title">Support the Campaign</h2>
+  <div class="donate-box fade-in">
+    <p>This campaign runs on community support — not corporate funding. Your donation helps cover legal costs, FOIA filing fees, public outreach, and keeping toadsdontsuck.org running and fighting.</p>
+    <div class="donate-amounts">
+      <button class="amount-btn">$10</button>
+      <button class="amount-btn active">$25</button>
+      <button class="amount-btn">$50</button>
+      <button class="amount-btn">$100</button>
+    </div>
+    <a href="#" class="btn-primary" style="display:inline-block;">Donate Now</a>
+    <p class="donate-note">Donation processing coming soon via Square. Every dollar stays local.</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <span class="section-label">// Who we are</span>
+  <h2 class="section-title">About This Campaign</h2>
+  <div class="about-inner">
+    <p><strong>Toads Don't Suck</strong> is a grassroots community campaign started by Conway residents who believe that major decisions about our city — especially decisions that affect our river, our environment, and our future — should be made in public, with public input, not behind closed doors under nondisclosure agreements.</p>
+    <blockquote>
+      <p>"They'd suck until they puffed up like toads." Conway built a whole festival on that story. We're not going to let the same thing happen to our river.</p>
+    </blockquote>
+    <p>We are not anti-business. We are not anti-development. We are <strong>pro-transparency, pro-community, and pro-river.</strong> If a data center is coming to Conway, the people of Conway deserve to know what it means for their water, their air, their land, and their quality of life — before the concrete is poured.</p>
+    <p>This campaign was built from scratch by community members with no political backing and no outside funding. We believe in the power of an informed, organized community to hold its local government accountable.</p>
+    <p>Want to get involved, volunteer, or share information with us? Reach out at <a href="/cdn-cgi/l/email-protection#3b4b495e48487b4f545a5f485f54554f484e58501554495c"><span class="__cf_email__" data-cfemail="0a7a786f79794a7e656b6e796e65647e797f69612465786d">[email&#160;protected]</span></a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">Toads Don't Suck</span>
+      <p>A grassroots campaign for transparency, community voice, and the Arkansas River. Conway, AR — The Natural State.</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow the Fight</h4>
+      <div class="social-links">
+        <a href="#" class="social-link">Facebook</a>
+        <a href="#" class="social-link">Instagram</a>
+        <a href="#" class="social-link">TikTok</a>
+        <a href="#" class="social-link">Twitter / X</a>
+      </div>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <a href="/cdn-cgi/l/email-protection#87f7f5e2f4f4c7f3e8e6e3f4e3e8e9f3f4f2e4eca9e8f5e0"><span class="__cf_email__" data-cfemail="bdcdcfd8cecefdc9d2dcd9ced9d2d3c9cec8ded693d2cfda">[email&#160;protected]</span></a>
+      <a href="#action">Take Action</a>
+      <a href="#evidence">The Evidence</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Toads Don't Suck Campaign — Conway, Arkansas. Not affiliated with any political party or candidate.</p>
+    <span class="handwritten">Be the toad. 🐸</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Fade in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 120);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Donate buttons
+  document.querySelectorAll('.amount-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Petition form submit — sends to Netlify, shows success message
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toStri
