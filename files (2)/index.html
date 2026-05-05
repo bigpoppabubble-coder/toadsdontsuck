@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toads Don't Suck — Conway, AR Transparency Campaign</title>
+  <meta name="description" content="A grassroots public records campaign tracking the proposed AI data center development on 160+ acres of Arkansas River bottomland along Lollie Road in Conway, Arkansas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:       #1B4332;
+      --green-mid:   #2D6A4F;
+      --green-light: #52B788;
+      --yellow:      #F4C430;
+      --yellow-dark: #C9960A;
+      --red:         #C1121F;
+      --cream:       #F5F0E8;
+      --paper:       #FEFDF9;
+      --ink:         #1A1A1A;
+      --ink-mid:     #3D3D3D;
+      --ink-light:   #6B6B6B;
+      --rule:        rgba(0,0,0,0.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.6; }
+
+    .masthead { background: var(--green); color: #fff; border-bottom: 6px solid var(--yellow); }
+    .masthead-inner { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: end; }
+    .flag-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-light); margin-bottom: 0.3rem; display: block; }
+    .flag-title { font-family: 'Bebas Neue', cursive; font-size: clamp(3.5rem, 9vw, 6.5rem); line-height: 0.88; letter-spacing: 0.02em; color: #fff; }
+    .flag-title .em { color: var(--yellow); }
+    .flag-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 400; color: rgba(255,255,255,0.7); margin-top: 0.4rem; letter-spacing: 0.03em; }
+    .masthead-meta { text-align: right; font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+    .masthead-meta strong { color: var(--yellow); display: block; font-size: 1rem; }
+
+    nav { background: var(--ink); position: sticky; top: 0; z-index: 200; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; gap: 0; overflow-x: auto; }
+    nav a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; padding: 0.85rem 1.1rem; white-space: nowrap; border-bottom: 3px solid transparent; transition: color 0.15s, border-color 0.15s; }
+    nav a:hover { color: #fff; border-color: var(--yellow); }
+    nav a.cta { margin-left: auto; background: var(--red); color: #fff; padding: 0.85rem 1.4rem; }
+    nav a.cta:hover { background: #9B0E18; }
+
+    .alert-bar { background: var(--red); color: #fff; padding: 0.75rem 1.5rem; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.05em; }
+    .alert-bar a { color: var(--yellow); }
+
+    .page-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .two-col { display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: start; }
+
+    .section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
+    .section:last-child { border-bottom: none; }
+    .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--green-mid); opacity: 0.3; }
+    .section-label.red { color: var(--red); }
+    .section-label.red::after { background: var(--red); }
+    h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: 0.03em; line-height: 1; color: var(--ink); margin-bottom: 1rem; }
+    h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+    p { margin-bottom: 1rem; color: var(--ink-mid); }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--ink); }
+    a { color: var(--green-mid); }
+
+    .hero-summary { background: var(--paper); border-left: 6px solid var(--yellow); padding: 1.5rem 1.8rem; border-radius: 0 8px 8px 0; margin: 2rem 0; font-size: 1.08rem; line-height: 1.75; color: var(--ink-mid); }
+    .hero-summary strong { color: var(--ink); }
+
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin: 1.5rem 0; }
+    .stat-cell { background: var(--paper); padding: 1.2rem 1rem; text-align: center; }
+    .stat-num { font-family: 'Bebas Neue', cursive; font-size: 2.4rem; letter-spacing: 0.04em; color: var(--green); line-height: 1; }
+    .stat-num.red { color: var(--red); }
+    .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-top: 0.25rem; }
+
+    .doc-categories { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .cat-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 4px; border: 2px solid var(--rule); background: var(--paper); cursor: pointer; transition: all 0.15s; color: var(--ink-mid); }
+    .cat-btn:hover, .cat-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
+
+    .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+    .doc-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 1.2rem; display: flex; gap: 1rem; align-items: flex-start; transition: box-shadow 0.15s, border-color 0.15s; text-decoration: none; color: inherit; }
+    .doc-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-color: var(--green-light); }
+    .doc-card[data-category="key"] { border-left: 4px solid var(--red); }
+    .doc-card[data-category="rezoning"] { border-left: 4px solid var(--yellow-dark); }
+    .doc-card[data-category="communications"] { border-left: 4px solid var(--green-mid); }
+    .doc-card[data-category="ordinances"] { border-left: 4px solid #6C63FF; }
+    .doc-card[data-category="evidence"] { border-left: 4px solid #E67E22; }
+    .doc-card.hidden { display: none; }
+    .doc-icon { font-size: 1.8rem; flex-shrink: 0; line-height: 1; }
+    .doc-info { flex: 1; min-width: 0; }
+    .doc-badge { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 3px; margin-bottom: 0.35rem; display: inline-block; }
+    .badge-key { background: var(--red); color: #fff; }
+    .badge-rezoning { background: var(--yellow-dark); color: #fff; }
+    .badge-communications { background: var(--green-mid); color: #fff; }
+    .badge-ordinances { background: #6C63FF; color: #fff; }
+    .badge-evidence { background: #E67E22; color: #fff; }
+    .doc-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; line-height: 1.3; }
+    .doc-desc { font-size: 0.82rem; color: var(--ink-light); line-height: 1.4; margin: 0; }
+    .doc-meta { font-size: 0.75rem; color: var(--ink-light); margin-top: 0.4rem; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.04em; }
+
+    .finding { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 1.4rem 1.6rem 1.4rem 4rem; margin-bottom: 1rem; position: relative; }
+    .finding-num { position: absolute; left: 1rem; top: 1.2rem; font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--rule); line-height: 1; }
+    .finding h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .finding p { font-size: 0.92rem; margin: 0; }
+    .finding .src { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-mid); margin-top: 0.5rem; display: block; }
+    .finding.hi { border-color: var(--red); border-left: 4px solid var(--red); }
+    .finding.hi .finding-num { color: rgba(193,18,31,0.12); }
+
+    .sidebar { position: sticky; top: 48px; }
+    .sidebar-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; }
+    .sidebar-head { background: var(--green); color: #fff; padding: 0.8rem 1.1rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .sidebar-head.red { background: var(--red); }
+    .sidebar-head.yellow { background: var(--yellow-dark); }
+    .sidebar-body { padding: 1.1rem; }
+
+    .foia-row { display: flex; flex-direction: column; gap: 0.5rem; }
+    .foia-item { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.6rem 0; border-bottom: 1px solid var(--rule); font-size: 0.88rem; }
+    .foia-item:last-child { border-bottom: none; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    .dot-g { background: #27AE60; }
+    .dot-y { background: var(--yellow-dark); }
+    .dot-r { background: var(--red); }
+    .foia-text { line-height: 1.4; color: var(--ink-mid); }
+    .foia-text strong { display: block; color: var(--ink); font-size: 0.92rem; }
+
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: var(--rule); }
+    .tl-item { position: relative; padding-bottom: 1.5rem; padding-left: 1rem; }
+    .tl-item::before { content: ''; position: absolute; left: -1.55rem; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--green-mid); border: 2px solid var(--cream); }
+    .tl-item.red::before { background: var(--red); }
+    .tl-date { font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.15rem; }
+    .tl-event { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.45; }
+    .tl-event strong { color: var(--ink); }
+
+    .petition-section { background: var(--green); color: #fff; padding: 4rem 1.5rem; }
+    .petition-inner { max-width: 680px; margin: 0 auto; }
+    .petition-inner h2 { color: var(--yellow); }
+    .petition-inner p { color: rgba(255,255,255,0.8); }
+    .petition-inner .section-label { color: rgba(255,255,255,0.5); }
+    .petition-inner .section-label::after { background: rgba(255,255,255,0.3); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 1.5rem 0 1rem; }
+    label { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.3rem; }
+    input[type="text"], input[type="email"] { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); border-radius: 6px; padding: 0.65rem 0.9rem; color: #fff; font-family: 'Barlow', sans-serif; font-size: 1rem; outline: none; transition: border-color 0.2s; }
+    input::placeholder { color: rgba(255,255,255,0.3); }
+    input:focus { border-color: var(--yellow); }
+    .cb-row { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0.6rem 0; }
+    .cb-row input[type="checkbox"] { width: auto; margin-top: 3px; flex-shrink: 0; accent-color: var(--yellow); }
+    .cb-row label { text-transform: none; font-size: 0.88rem; letter-spacing: 0; color: rgba(255,255,255,0.7); font-weight: 400; }
+    .btn-submit { width: 100%; background: var(--yellow); color: var(--green); border: none; border-radius: 6px; padding: 0.9rem 1.5rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; margin-top: 0.8rem; }
+    .btn-submit:hover { background: #FFD740; }
+    .int-note { margin-top: 1rem; font-size: 0.82rem; color: rgba(255,255,255,0.4); font-style: italic; text-align: center; }
+
+    footer { background: var(--ink); color: rgba(255,255,255,0.5); padding: 2.5rem 1.5rem; font-size: 0.85rem; line-height: 1.7; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    footer h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem; }
+    footer a { color: var(--green-light); }
+    .footer-logo { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: var(--yellow); letter-spacing: 0.04em; margin-bottom: 0.4rem; }
+    .footer-disc { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); max-width: 1100px; margin-left: auto; margin-right: auto; font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+
+    @media (max-width: 760px) {
+      .two-col { grid-template-columns: 1fr; }
+      .masthead-inner { grid-template-columns: 1fr; }
+      .masthead-meta { text-align: left; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="alert-bar">
+  🐸 FOIA-2026-76 Response Received — 169 documents released April 8, 2026. Full archive below. &nbsp;|&nbsp; <a href="#petition">Sign the petition →</a>
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <span class="flag-eyebrow">🐸 Conway, Arkansas · Public Transparency Campaign</span>
+      <div class="flag-title">Toads<br><span class="em">Don't Suck</span></div>
+      <p class="flag-sub">Tracking the proposed AI data center on Lollie Road — with the documents to prove it.</p>
+    </div>
+    <div class="masthead-meta">
+      <strong>FOIA-2026-76</strong>
+      Filed by Matthew Mattingly<br>
+      Response: April 8, 2026<br>
+      Documents released: 169<br><br>
+      <strong>toadsdontsuck.org</strong>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#summary">Summary</a>
+    <a href="#findings">Key Findings</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#documents">Documents</a>
+    <a href="#foia-status">FOIA Status</a>
+    <a href="#petition" class="cta">✊ Sign Petition</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="two-col">
+    <main>
+
+      <!-- SUMMARY -->
+      <section class="section" id="summary">
+        <div class="section-label">What Is This</div>
+        <h2>The Lollie Road Data Center Deal</h2>
+        <div class="hero-summary">
+          The City of Conway quietly negotiated a deal with <strong>Forgelight Ventures, LLC</strong> to build a <strong>$1 billion, 300,000 sq ft AI data center</strong> on Arkansas River bottomland along Lollie Road. The city agreed to a <strong>65% property tax abatement for 30 years</strong>. Approximately <strong>160 acres of agricultural land were rezoned from A-1 to I-3 (Heavy Industrial)</strong> in April 2025. When asked about NDAs, the city said it had <em>"no records responsive"</em> — yet the MOU released in this same FOIA batch was stamped <em>"CONFIDENTIAL, TRADE SECRET INFORMATION, NOT SUBJECT TO DISCLOSURE REQUESTS."</em> Portions of the rezoned land lie within the <strong>100-year floodplain.</strong> The city has <strong>zero environmental review documents on file.</strong>
+        </div>
+        <div class="stat-row">
+          <div class="stat-cell"><div class="stat-num">160+</div><div class="stat-label">Acres Rezoned A-1→I-3</div></div>
+          <div class="stat-cell"><div class="stat-num">$1B</div><div class="stat-label">Projected Investment</div></div>
+          <div class="stat-cell"><div class="stat-num red">65%</div><div class="stat-label">Tax Abatement / 30 Yrs</div></div>
+          <div class="stat-cell"><div class="stat-num">~50</div><div class="stat-label">Jobs Promised</div></div>
+          <div class="stat-cell"><div class="stat-num red">0</div><div class="stat-label">Environmental Reviews</div></div>
+        </div>
+        <p>This site hosts documents released in response to <strong>FOIA-2026-76</strong>, filed by Conway resident Matthew Mattingly. All documents are presented as-released with no alterations. Analysis is clearly labeled as such and distinguished from primary source material.</p>
+        <p><strong>All facts stated here are drawn directly from released documents.</strong> Speculation is clearly labeled. We let the records speak for themselves.</p>
+      </section>
+
+      <!-- FINDINGS -->
+      <section class="section" id="findings">
+        <div class="section-label red">Key Findings</div>
+        <h2>What the Documents Show</h2>
+
+        <div class="finding hi">
+          <div class="finding-num">01</div>
+          <h4>The MOU Was Stamped "Not Subject to Disclosure" — Then Disclosed</h4>
+          <p>The Forgelight Ventures MOU bears the header "CONFIDENTIAL, TRADE SECRET INFORMATION, NOT SUBJECT TO DISCLOSURE REQUESTS" on every page. Yet the city released it under FOIA. Simultaneously, when asked for NDA/confidentiality agreements, the city said it had "no records responsive." The contradiction is now documented.</p>
+          <span class="src">Source: Forgelight Ventures LLC_MOU.pdf · LET_RESPONSE_2026-76.pdf</span>
+        </div>
+
+        <div class="finding hi">
+          <div class="finding-num">02</div>
+          <h4>65% Tax Abatement for 30 Years — Up to $50 Billion in Personal Property</h4>
+          <p>The MOU commits Conway to a net 65% property tax abatement for 30 years. Bond structures cap real property at $10 billion and personal property at $50 billion. Conway Corp will provide cooling water via treated effluent from the Tupelo Bayou Wastewater Treatment Plant, with special franchise fee arrangements separate from what residents pay.</p>
+          <span class="src">Source: Forgelight Ventures LLC_MOU.pdf</span>
+        </div>
+
+        <div class="finding">
+          <div class="finding-num">03</div>
+          <h4>The Rezoning Applicant Was the Conway Development Corporation — Not the Developer</h4>
+          <p>The rezoning application was filed by Jenifer Kendrick of the Conway Development Corporation (Chamber of Commerce) on behalf of landowner Johnny Adams. The actual data center developer, Forgelight Ventures, is not named in the rezoning application. The land was rezoned from Agricultural (A-1) to Heavy Industrial (I-3).</p>
+          <span class="src">Source: Rezoning Cover Letter.Adams.4.3.25_v1.pdf · REZ-0425-0052_160 Acres Lollie Rd A-1 to I-3_RR.docx</span>
+        </div>
+
+        <div class="finding">
+          <div class="finding-num">04</div>
+          <h4>Portions of the Property Are in the 100-Year Floodplain. No Environmental Review Was Done.</h4>
+          <p>The city's own planning staff memo notes: "Portions of the property lie within the 100-year floodplain." No environmental assessment was conducted. The FOIA response for environmental review documents returned: "The City of Conway has no records responsive to this item." — for ADEE, Dept of Health, Army Corps of Engineers, and EPA.</p>
+          <span class="src">Source: REZ-0425-0052_160 Acres Lollie Rd A-1 to I-3_RR.docx · LET_RESPONSE_2026-76.pdf</span>
+        </div>
+
+        <div class="finding">
+          <div class="finding-num">05</div>
+          <h4>Water Concerns Are Documented — Alderman Acknowledged Them</h4>
+          <p>The FOIA release includes 19+ emails from residents titled "Concerned Lollie Rd Resident," plus multiple threads explicitly about water usage. One resident cited news reports about neighborhoods losing water near Meta data centers. Alderman Drew Spurgers replied: "Understood on the concerns. I'll visit with Bret Carroll on this and see if there's more we need to stipulate as we move forward."</p>
+          <span class="src">Source: Data Center.pdf · Multiple .msg files in FOIA release</span>
+        </div>
+
+        <div class="finding">
+          <div class="finding-num">06</div>
+          <h4>City Passed Data Center Zoning Laws in 2023 — Well Before This Became Public</h4>
+          <p>Conway passed O-23-55 (noise rules for data centers) in July 2023 via special meeting, and O-23-72 (zoning definitions) in fall 2023. These established the legal framework before the Lollie Road rezoning application was filed in April 2025. The MOU with Forgelight appears to have been negotiated in the same period.</p>
+          <span class="src">Source: O-23-55 ORD_Adm_Data Center Crypto Noise Ordinance.docx · O-23-72_ORD_Planning_Data Centers.docx</span>
+        </div>
+
+        <div class="finding">
+          <div class="finding-num">07</div>
+          <h4>~50 Jobs. $1 Billion Investment. $20 Million Per Job.</h4>
+          <p>The MOU states the project creates "approximately 50 new high-quality jobs." At $1 billion in investment, that's approximately $20 million per job — in a deal supported by a 65% tax abatement over 30 years. Whether this trade-off serves Conway residents is a legitimate public question that deserves an open debate.</p>
+          <span class="src">Source: Forgelight Ventures LLC_MOU.pdf — Note: jobs/investment ratio analysis is TDS campaign commentary, not a document claim.</span>
+        </div>
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="section" id="timeline">
+        <div class="section-label">Chronology</div>
+        <h2>Timeline of Events</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">July 25, 2023</div>
+            <div class="tl-event"><strong>O-23-55 passed via special meeting</strong> — noise ordinance for data centers, in response to Arkansas Act 851 (Arkansas Data Centers Act). Legal groundwork begins.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">September – November 2023</div>
+            <div class="tl-event"><strong>O-23-72 adopted</strong> — Conway Zoning Code amended to formally define "Data Center (Limited)" and "Data Center (General)" use classifications.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Date Unknown (Pre-2025)</div>
+            <div class="tl-event"><strong>Forgelight Ventures MOU signed</strong> — City commits to 65% tax abatement / 30 years, cooling water from Tupelo Bayou WWTP. Stamped "Confidential, Not Subject to Disclosure."</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">March 2025</div>
+            <div class="tl-event"><strong>Annexation applications filed</strong> (ANN-0325-0046 and ANN-0325-0047) — adjacent properties brought into city limits, noted in planning documents as precursor to the rezoning.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">April 3, 2025</div>
+            <div class="tl-event"><strong>Rezoning application filed</strong> — Jenifer Kendrick (Conway Development Corp) files REZ-0425-0052 on behalf of landowner Johnny Adams. 160± acres, A-1 to I-3. Explicitly states purpose: "to host a data center campus."</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">April 14, 2025</div>
+            <div class="tl-event"><strong>Planning Commission meeting</strong> — public comments submitted. Internal Teams chats and emails show active discussion among planning staff about the rezoning packet.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">April 22, 2025</div>
+            <div class="tl-event"><strong>City Council agenda includes rezoning</strong> — April 22 City Council meeting includes the Lollie Road rezoning item.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">May 2025</div>
+            <div class="tl-event"><strong>Planning Commission Report issued</strong> — formal 20MB+ documentation package on the rezoning recommendation.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">June 24, 2025</div>
+            <div class="tl-event"><strong>City Council Meeting Minutes</strong> — rezoning-related items formalized in official record.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">July – August 2025</div>
+            <div class="tl-event"><strong>Resident concerns escalate</strong> — multiple Lollie Road residents email aldermen. Alderman Drew Spurgers responds to one, acknowledging water concerns and promising follow-up with "Bret Carroll."</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">November 25, 2025</div>
+            <div class="tl-event"><strong>O-25-89 passed</strong> — Conway Zoning Code amended adding Article X on Development Review. Signed by Mayor Bart Castleberry.</div>
+          </div>
+          <div class="tl-item red">
+            <div class="tl-date">Early 2026</div>
+            <div class="tl-event"><strong>FOIA-2026-76 filed</strong> by Matthew Mattingly requesting all data center-related records. Response received April 8, 2026 — 169 documents released.</div>
+          </div>
+          <div class="tl-item red">
+            <div class="tl-date">May 4, 2026</div>
+            <div class="tl-event"><strong>This site goes live.</strong> Documents published in full. Toads Don't Suck campaign continues. 🐸</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOCUMENTS -->
+      <section class="section" id="documents">
+        <div class="section-label">FOIA-2026-76 Document Archive</div>
+        <h2>All Released Documents</h2>
+        <p>169 documents were released in response to FOIA-2026-76. Key documents are linked and described below. All are presented unaltered as received from the City of Conway.</p>
+
+        <div class="doc-categories">
+          <button class="cat-btn active" onclick="filterDocs(this,'all')">All Documents</button>
+          <button class="cat-btn" onclick="filterDocs(this,'key')">🔴 Key Documents</button>
+          <button class="cat-btn" onclick="filterDocs(this,'rezoning')">Rezoning</button>
+          <button class="cat-btn" onclick="filterDocs(this,'communications')">Communications</button>
+          <button class="cat-btn" onclick="filterDocs(this,'ordinances')">Ordinances</button>
+          <button class="cat-btn" onclick="filterDocs(this,'evidence')">Evidence</button>
+        </div>
+
+        <div class="doc-grid" id="doc-grid">
+
+          <a class="doc-card" data-category="key" href="Forgelight Ventures LLC_MOU.pdf" target="_blank">
+            <div class="doc-icon">📋</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-key">Key Document</span>
+              <div class="doc-title">Forgelight Ventures LLC — Memorandum of Understanding</div>
+              <p class="doc-desc">The core deal. $1B data center, 65% tax abatement / 30 years, cooling water from Tupelo Bayou WWTP. Stamped "Not Subject to Disclosure" — then disclosed.</p>
+              <div class="doc-meta">PDF · Forgelight_Ventures_LLC_MOU.pdf</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="key" href="LET_RESPONSE_2026-76.pdf" target="_blank">
+            <div class="doc-icon">📨</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-key">Key Document</span>
+              <div class="doc-title">FOIA Response Letter — Case 2026-76</div>
+              <p class="doc-desc">Official city response. Notes what was included vs. what had "no records responsive" — including the NDA request and environmental reviews.</p>
+              <div class="doc-meta">PDF · LET_RESPONSE_2026-76.pdf · April 8, 2026</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="key" href="Rezoning Cover Letter.Adams.4.3.25_v1.pdf" target="_blank">
+            <div class="doc-icon">📄</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-key">Key Document</span>
+              <div class="doc-title">Rezoning Application Cover Letter — Adams / Lollie Rd</div>
+              <p class="doc-desc">Filed by Jenifer Kendrick (Conway Development Corp) on behalf of landowner Johnny Adams. 160± acres. A-1 → I-3. States explicitly: "to host a data center campus."</p>
+              <div class="doc-meta">PDF · Rezoning Cover Letter.Adams.4.3.25_v1.pdf · April 3, 2025</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="key" href="Data Center.pdf" target="_blank">
+            <div class="doc-icon">✉️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-key">Key Document</span>
+              <div class="doc-title">Alderman Response to Water Concern</div>
+              <p class="doc-desc">Resident Ted Warriner raised water supply concerns. Alderman Drew Spurgers responded acknowledging the issue and promising follow-up with Bret Carroll.</p>
+              <div class="doc-meta">PDF · Data Center.pdf · July 2025</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="rezoning" href="REZ-0425-0052_160 Acres Lollie Rd A-1 to I-3_RR.docx" target="_blank">
+            <div class="doc-icon">🗺️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-rezoning">Rezoning</span>
+              <div class="doc-title">Staff Rezoning Report — REZ-0425-0052</div>
+              <p class="doc-desc">Planning staff analysis. Notes floodplain concerns, adjacent zoning, traffic projections. Recommends approval.</p>
+              <div class="doc-meta">DOCX · REZ-0425-0052_160 Acres Lollie Rd A-1 to I-3_RR.docx</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="rezoning" href="Stratus.Vesting Deed.Adams (002).pdf" target="_blank">
+            <div class="doc-icon">📜</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-rezoning">Rezoning</span>
+              <div class="doc-title">Vesting Deed — Adams Property</div>
+              <p class="doc-desc">Property deed for the parcels subject to rezoning. Shows ownership chain and legal description.</p>
+              <div class="doc-meta">PDF · Stratus.Vesting Deed.Adams (002).pdf</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="rezoning" href="Re_ Rezoning packet_email.pdf" target="_blank">
+            <div class="doc-icon">✉️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-rezoning">Rezoning</span>
+              <div class="doc-title">Email: Rezoning Packet Chain</div>
+              <p class="doc-desc">Email correspondence about the rezoning application packet between city staff and parties involved.</p>
+              <div class="doc-meta">PDF · Re_ Rezoning packet_email.pdf · April 2025</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="rezoning" href="Email_4April2025_Deed and 200ft List Questions.pdf" target="_blank">
+            <div class="doc-icon">✉️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-rezoning">Rezoning</span>
+              <div class="doc-title">Email: Deed and 200ft Notification List</div>
+              <p class="doc-desc">Internal email about the required 200-foot adjacent property owner notification list for the rezoning.</p>
+              <div class="doc-meta">PDF · Email_4April2025_Deed and 200ft List Questions.pdf</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="rezoning" href="Email_2April2025_Council Question.pdf" target="_blank">
+            <div class="doc-icon">✉️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-rezoning">Rezoning</span>
+              <div class="doc-title">Email: Council Question — April 2, 2025</div>
+              <p class="doc-desc">Email between council and/or staff regarding the rezoning process before the Planning Commission meeting.</p>
+              <div class="doc-meta">PDF · Email_2April2025_Council Question.pdf</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="communications" href="Email_14April2025_Authorization.pdf" target="_blank">
+            <div class="doc-icon">✉️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-communications">Communications</span>
+              <div class="doc-title">Email: Authorization — April 14, 2025</div>
+              <p class="doc-desc">Authorization-related email around the Planning Commission meeting on the rezoning.</p>
+              <div class="doc-meta">PDF · Email_14April2025_Authorization.pdf</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="communications" href="Teams Chat_2025 04 21.pdf" target="_blank">
+            <div class="doc-icon">💬</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-communications">Communications</span>
+              <div class="doc-title">Teams Chat — April 21, 2025</div>
+              <p class="doc-desc">Internal Microsoft Teams messages from city staff the day before the April 22 City Council meeting.</p>
+              <div class="doc-meta">PDF · Teams Chat_2025 04 21.pdf</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="communications" href="Teams Chat_Planning Group_9April2025_April 2025 PC Items.pdf" target="_blank">
+            <div class="doc-icon">💬</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-communications">Communications</span>
+              <div class="doc-title">Teams Chat: Planning Group — April 9, 2025</div>
+              <p class="doc-desc">Internal planning staff Teams messages discussing April 2025 Planning Commission agenda items, including Lollie Road.</p>
+              <div class="doc-meta">PDF · Teams Chat_Planning Group_9April2025.pdf</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="communications" href="City Council Meeting Minutes 6-24-2025.pdf" target="_blank">
+            <div class="doc-icon">📋</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-communications">Communications</span>
+              <div class="doc-title">City Council Meeting Minutes — June 24, 2025</div>
+              <p class="doc-desc">Official minutes. Contains official record of votes and discussions related to the data center and rezoning.</p>
+              <div class="doc-meta">PDF · City Council Meeting Minutes 6-24-2025.pdf</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="ordinances" href="O-23-72_ORD_Planning_Data Centers.docx" target="_blank">
+            <div class="doc-icon">⚖️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-ordinances">Ordinance</span>
+              <div class="doc-title">O-23-72 — Data Center Zoning Definitions</div>
+              <p class="doc-desc">Adds "Data Center (Limited)" and "Data Center (General)" to Conway Zoning Code. Establishes where data centers are permitted. Fall 2023.</p>
+              <div class="doc-meta">DOCX · O-23-72_ORD_Planning_Data Centers.docx</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="ordinances" href="O-23-55 ORD_Adm_Data Center  Crypto Noise Ordinance_Revised.docx" target="_blank">
+            <div class="doc-icon">⚖️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-ordinances">Ordinance</span>
+              <div class="doc-title">O-23-55 — Data Center Noise Ordinance</div>
+              <p class="doc-desc">Noise attenuation rules for data centers. Passed July 25, 2023 via special City Council meeting in response to Arkansas Act 851.</p>
+              <div class="doc-meta">DOCX · O-23-55 ORD_Adm_Data Center Crypto Noise Ordinance_Revised.docx</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="ordinances" href="O-25-89_Planning_Article X_THIRD_FINAL READING.docx" target="_blank">
+            <div class="doc-icon">⚖️</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-ordinances">Ordinance</span>
+              <div class="doc-title">O-25-89 — Development Review Article X</div>
+              <p class="doc-desc">Adds Article X to Conway Zoning Code. Signed by Mayor Bart Castleberry, November 25, 2025.</p>
+              <div class="doc-meta">DOCX · O-25-89_Planning_Article X_THIRD_FINAL READING.docx · Nov 2025</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="ordinances" href="Planning_Memo to Council_Data Centers.docx" target="_blank">
+            <div class="doc-icon">📝</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-ordinances">Ordinance</span>
+              <div class="doc-title">Planning Commission Memo — Data Centers</div>
+              <p class="doc-desc">Memo from Planning Chair Rebekah Fincher to Mayor Castleberry recommending approval of data center zoning amendments. Sept 26, 2023.</p>
+              <div class="doc-meta">DOCX · Planning_Memo to Council_Data Centers.docx · Sept 2023</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="evidence" href="Public Notice Sign Proof 1_v1.jpg" target="_blank">
+            <div class="doc-icon">🪧</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-evidence">Evidence</span>
+              <div class="doc-title">Public Notice Sign — Proof 1</div>
+              <p class="doc-desc">Photo proof of the public notice sign posted at the Lollie Road rezoning site, as required by Arkansas law.</p>
+              <div class="doc-meta">JPG · Public Notice Sign Proof 1_v1.jpg</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="evidence" href="Public Notice Sign Proof 2_v1.jpg" target="_blank">
+            <div class="doc-icon">🪧</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-evidence">Evidence</span>
+              <div class="doc-title">Public Notice Sign — Proof 2</div>
+              <p class="doc-desc">Second public notice sign photo for the Lollie Road rezoning application.</p>
+              <div class="doc-meta">JPG · Public Notice Sign Proof 2_v1.jpg</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="evidence" href="Teams Screenshot 1_RR.png" target="_blank">
+            <div class="doc-icon">📸</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-evidence">Evidence</span>
+              <div class="doc-title">Teams Screenshot 1 — Planning Staff Communications</div>
+              <p class="doc-desc">Screenshot of internal Microsoft Teams messages among city planning staff about the Lollie Road rezoning.</p>
+              <div class="doc-meta">PNG · Teams Screenshot 1_RR.png</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="evidence" href="Teams Screenshot 2_RR.png" target="_blank">
+            <div class="doc-icon">📸</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-evidence">Evidence</span>
+              <div class="doc-title">Teams Screenshot 2 — Planning Staff Communications</div>
+              <p class="doc-desc">Additional Teams screenshot from city planning staff communications about the rezoning.</p>
+              <div class="doc-meta">PNG · Teams Screenshot 2_RR.png</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="evidence" href="Teams Screenshot 3_RR.png" target="_blank">
+            <div class="doc-icon">📸</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-evidence">Evidence</span>
+              <div class="doc-title">Teams Screenshot 3 — Planning Staff Communications</div>
+              <p class="doc-desc">Third screenshot from the planning staff rezoning communications chain.</p>
+              <div class="doc-meta">PNG · Teams Screenshot 3_RR.png</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="evidence" href="Teams Screenshot 4_PD.png" target="_blank">
+            <div class="doc-icon">📸</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-evidence">Evidence</span>
+              <div class="doc-title">Teams Screenshot 4 — Planning &amp; Development</div>
+              <p class="doc-desc">Teams screenshot from Planning &amp; Development department internal communications.</p>
+              <div class="doc-meta">PNG · Teams Screenshot 4_PD.png</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="evidence" href="Teams Screenshot 5_PD.png" target="_blank">
+            <div class="doc-icon">📸</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-evidence">Evidence</span>
+              <div class="doc-title">Teams Screenshot 5 — Planning &amp; Development</div>
+              <p class="doc-desc">Additional Planning &amp; Development Teams screenshot.</p>
+              <div class="doc-meta">PNG · Teams Screenshot 5_PD.png</div>
+            </div>
+          </a>
+
+          <a class="doc-card" data-category="evidence" href="Teams Screenshot 6_RA.png" target="_blank">
+            <div class="doc-icon">📸</div>
+            <div class="doc-info">
+              <span class="doc-badge badge-evidence">Evidence</span>
+              <div class="doc-title">Teams Screenshot 6 — Related Party</div>
+              <p class="doc-desc">Teams screenshot from additional parties in the rezoning communications.</p>
+              <div class="doc-meta">PNG · Teams Screenshot 6_RA.png</div>
+            </div>
+          </a>
+
+        </div>
+
+        <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--ink-light);font-style:italic;">
+          📁 The full FOIA release contains 169 files total — including 90+ resident and official email chains (.msg), multiple large Planning Commission PDFs, City Council agendas, and a nested archive ("0 Culberson Data Center.zip", 60MB) not yet fully catalogued. All files presented as released.
+        </p>
+      </section>
+
+    </main>
+
+    <aside class="sidebar">
+
+      <div class="sidebar-card" id="foia-status">
+        <div class="sidebar-head">FOIA Status</div>
+        <div class="sidebar-body">
+          <div class="foia-row">
+            <div class="foia-item"><div class="dot dot-g"></div><div class="foia-text"><strong>FOIA-2026-76 — Responded</strong>169 documents released April 8, 2026.</div></div>
+            <div class="foia-item"><div class="dot dot-g"></div><div class="foia-text"><strong>MOU Released</strong>Forgelight Ventures LLC MOU included despite "not subject to disclosure" marking.</div></div>
+            <div class="foia-item"><div class="dot dot-r"></div><div class="foia-text"><strong>No NDA Records</strong>City said "no records responsive" to the NDA/confidentiality agreement request.</div></div>
+            <div class="foia-item"><div class="dot dot-r"></div><div class="foia-text"><strong>No Environmental Reviews</strong>City said "no records responsive" for ADEE, Health Dept, Army Corps, or EPA.</div></div>
+            <div class="foia-item"><div class="dot dot-y"></div><div class="foia-text"><strong>"0 Culberson Data Center.zip" — Pending</strong>60MB nested archive released. Contents not yet fully catalogued.</div></div>
+            <div class="foia-item"><div class="dot dot-y"></div><div class="foia-text"><strong>Additional FOIAs Possible</strong>Water agreements, Conway Corp records, and rate negotiations may require separate requests.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-head yellow">About This Campaign</div>
+        <div class="sidebar-body">
+          <p style="font-size:0.88rem;"><strong>Toads Don't Suck</strong> is a grassroots public transparency campaign run by Conway resident Matthew Mattingly.</p>
+          <p style="font-size:0.88rem;">Our commitment: <strong>100% verifiable facts.</strong> Every claim cites a specific document. Speculation is clearly labeled. We don't inflate numbers. We don't manufacture urgency. We post the records and let you decide.</p>
+          <p style="font-size:0.88rem;">We are not opposed to economic development. We are opposed to <strong>undisclosed deals, zero environmental review, and public subsidies without public debate.</strong></p>
+          <p style="font-size:0.88rem;margin:0;">🌐 <a href="https://toadsdontsuck.org" target="_blank">toadsdontsuck.org</a></p>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-head red">Unanswered Questions</div>
+        <div class="sidebar-body">
+          <div class="foia-row">
+            <div class="foia-item" style="border:none;padding:0.35rem 0;"><div class="foia-text" style="font-size:0.85rem;">How much water will the data center use per day, and from what source?</div></div>
+            <div class="foia-item" style="border:none;padding:0.35rem 0;"><div class="foia-text" style="font-size:0.85rem;">What will residents' utility rates look like after Forgelight's preferential rate deal?</div></div>
+            <div class="foia-item" style="border:none;padding:0.35rem 0;"><div class="foia-text" style="font-size:0.85rem;">Who is behind Forgelight Ventures, LLC?</div></div>
+            <div class="foia-item" style="border:none;padding:0.35rem 0;"><div class="foia-text" style="font-size:0.85rem;">What does the "0 Culberson Data Center.zip" archive contain?</div></div>
+            <div class="foia-item" style="border:none;padding:0.35rem 0;"><div class="foia-text" style="font-size:0.85rem;">Did adjacent Lollie Rd residents receive proper mailed notice before the rezoning vote?</div></div>
+            <div class="foia-item" style="border:none;padding:0.35rem 0;border:none;"><div class="foia-text" style="font-size:0.85rem;">What happens to the abatement if Forgelight never builds — or builds and leaves?</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-head">Share This Page</div>
+        <div class="sidebar-body" style="display:flex;flex-direction:column;gap:0.5rem;">
+          <a href="https://facebook.com/sharer/sharer.php?u=https://toadsdontsuck.org" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.06em;text-transform:uppercase;background:#1877F2;color:#fff;padding:0.5rem 1rem;border-radius:5px;text-decoration:none;text-align:center;">Share on Facebook</a>
+          <a href="https://twitter.com/intent/tweet?text=Conway%20AR%20quietly%20rezoned%20160%20acres%20of%20Arkansas%20River%20bottomland%20for%20a%20%241B%20AI%20data%20center%20with%20a%2065%25%20tax%20break%20for%2030%20years.%20The%20FOIA%20docs%20are%20public.&url=https://toadsdontsuck.org" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.06em;text-transform:uppercase;background:#000;color:#fff;padding:0.5rem 1rem;border-radius:5px;text-decoration:none;text-align:center;">Share on X / Twitter</a>
+          <button onclick="navigator.clipboard.writeText('https://toadsdontsuck.org');this.textContent='Copied!'" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.06em;text-transform:uppercase;background:var(--cream);border:2px solid var(--rule);color:var(--ink);padding:0.5rem 1rem;border-radius:5px;cursor:pointer;">Copy Link</button>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<section class="petition-section" id="petition">
+  <div class="petition-inner">
+    <div class="section-label">Take Action</div>
+    <h2>Sign the Petition</h2>
+    <p>We're asking the City of Conway and Conway Corp to release full public information about the Forgelight Ventures data center deal — including water usage agreements, utility rate structures, and any environmental impact assessments. The MOU is now public. The rest should be too.</p>
+    <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:1.5rem;margin-top:1.5rem;">
+      <div class="form-grid">
+        <div><label for="fn">First Name</label><input type="text" id="fn" placeholder="Your first name" /></div>
+        <div><label for="ln">Last Name</label><input type="text" id="ln" placeholder="Your last name" /></div>
+        <div><label for="em">Email</label><input type="email" id="em" placeholder="your@email.com" /></div>
+        <div><label for="zip">Zip Code</label><input type="text" id="zip" placeholder="72032" /></div>
+      </div>
+      <div class="cb-row"><input type="checkbox" id="cb1" /><label for="cb1">Display my name publicly. I understand names are verified before display — no bots, no inflated counts.</label></div>
+      <div class="cb-row"><input type="checkbox" id="cb2" /><label for="cb2">Send me updates when new FOIA responses or documents are published.</label></div>
+      <button class="btn-submit">✊ I Demand Transparency</button>
+      <p class="int-note">Every signature is real. We don't inflate counts. Not affiliated with any political party or candidate.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">🐸 Toads Don't Suck</div>
+      <p>A grassroots public records and transparency campaign.<br>Conway, Arkansas · <a href="https://toadsdontsuck.org">toadsdontsuck.org</a></p>
+      <p style="margin-top:0.75rem;">All documents presented are public records released by the City of Conway in response to FOIA-2026-76. Presented unaltered. Analysis represents campaign views, not legal conclusions.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <p><a href="#summary">Campaign Summary</a><br><a href="#findings">Key Findings</a><br><a href="#timeline">Timeline</a><br><a href="#documents">Document Archive</a><br><a href="#foia-status">FOIA Status</a><br><a href="#petition">Sign the Petition</a></p>
+      <h4 style="margin-top:1rem;">Contact</h4>
+      <p>Matthew Mattingly · Conway, AR 72032<br><a href="mailto:info@toadsdontsuck.org">info@toadsdontsuck.org</a></p>
+    </div>
+  </div>
+  <div class="footer-disc">
+    This site is for public information and transparency purposes only. Nothing here constitutes legal advice. Toads Don't Suck is not affiliated with Toad Suck Daze, Inc., the Conway Area Chamber of Commerce, or any political organization. The "Be Kind. Make Bubbles." guy runs this. Yes, really.
+  </div>
+</footer>
+
+<script>
+  function filterDocs(btn, cat) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.doc-card').forEach(card => {
+      card.classList.toggle('hidden', cat !== 'all' && card.dataset.category !== cat);
+    });
+  }
+</script>
+</body>
+</html>
